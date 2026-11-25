@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f8fc" />
+  <title>FocusCards — Study together</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">F</span><span>Focus<span class="brand-light">Cards</span></span></a>
+      <div class="side-label">MENU</div>
+      <a class="nav-item active" href="#"><span>▦</span> Study room</a>
+      <a class="nav-item" href="#deck"><span>▤</span> My flashcards</a>
+      <div class="sidebar-bottom">
+        <div class="mini-card">
+          <div class="mini-icon">✦</div>
+          <strong>Small steps,<br>big progress.</strong>
+          <p>Keep your learning streak alive.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar" id="profileAvatar">Y</div>
+          <div><strong id="profileName">Yousef</strong><small>Student account</small></div>
+          <button class="edit-name" id="editName" title="Change name">✎</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">YOUR PERSONAL STUDY SPACE</div>
+          <h1>Study room <span class="wave">✦</span></h1>
+          <p class="subheading">Learn something new today. You're doing great.</p>
+        </div>
+        <div class="online-pill"><span class="live-dot"></span><strong id="onlineCount">1</strong> online now</div>
+      </header>
+
+      <section class="welcome-row">
+        <div>
+          <span class="date-label" id="todayLabel">YOUR DAILY SESSION</span>
+          <h2>Ready to sharpen<br>your <span>mind?</span></h2>
+          <p>Review your cards, track your progress, and study alongside others.</p>
+          <button class="primary-btn" id="startBtn">Start studying <span>→</span></button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="hero-card back-card">✦</div>
+          <div class="hero-card front-card"><span>01 / 12</span><strong>Keep<br>learning.</strong><i>✧</i></div>
+          <div class="spark spark-one">✦</div><div class="spark spark-two">✧</div>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card"><div class="stat-icon purple">▣</div><div><small>CARDS IN DECK</small><strong id="totalCards">8</strong></div></article>
+        <article class="stat-card"><div class="stat-icon green">✓</div><div><small>CARDS MASTERED</small><strong id="masteredCount">0</strong></div></article>
+        <article class="stat-card"><div class="stat-icon orange">◷</div><div><small>SESSION STATUS</small><strong class="status-text" id="sessionStatus">Not started</strong></div></article>
+      </section>
+
+      <section class="study-layout" id="deck">
+        <div class="flashcard-panel">
+          <div class="section-heading"><div><span class="eyebrow">LET'S PRACTICE</span><h3>Today's flashcards</h3></div><span class="counter" id="cardCounter">01 <i>/</i> 08</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Flashcard. Click to reveal answer.">
+            <div class="card-top"><span class="tag">FRONT SIDE</span><span class="flip-hint">Click card to flip ↻</span></div>
+            <div class="card-content"><span class="question-icon">Q.</span><h2 id="cardQuestion">What does HTML stand for?</h2></div>
+            <div class="card-bottom"><span>FOCUSCARDS • WEB DEVELOPMENT</span><span>✦</span></div>
+          </div>
+          <div class="card-controls">
+            <button class="icon-btn" id="prevBtn" aria-label="Previous card">←</button>
+            <button class="secondary-btn" id="flipBtn">Reveal answer</button>
+            <button class="primary-btn next-btn" id="nextBtn">I got it <span>→</span></button>
+          </div>
+          <p class="keyboard-hint">TIP: Use ← → arrow keys to navigate and Space to flip.</p>
+        </div>
+
+        <aside class="activity-panel">
+          <div class="section-heading"><div><span class="eyebrow">LIVE COMMUNITY</span><h3>Study activity</h3></div><span class="live-label"><span class="live-dot"></span> LIVE</span></div>
+          <div class="activity-feed" id="activityFeed">
+            <div class="empty-activity"><div>✦</div><strong>It's quiet in here</strong><p>When someone studies, their activity will appear here in real time.</p></div>
+          </div>
+          <div class="session-note"><span>✧</span><p><strong>Study together.</strong><br>Every small action can motivate someone else.</p></div>
+        </aside>
+      </section>
+      <footer>Made for curious minds <span>✦</span> FocusCards</footer>
+    </main>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <div class="modal-backdrop" id="nameModal">
+    <div class="name-modal"><button class="modal-close" id="closeModal">×</button><span class="eyebrow">YOUR PROFILE</span><h3>What should we call you?</h3><p>Your name appears when you study with others.</p><input id="nameInput" maxlength="24" placeholder="Enter your name" /><button class="primary-btn" id="saveName">Save name <span>→</span></button></div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
